@@ -121,12 +121,6 @@ function OptieTwee() {
             >
               Optie 1
             </Link>
-            <Link
-              to="/optie-3"
-              className="rounded-full border border-border bg-secondary/60 px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-            >
-              Optie 3
-            </Link>
           </div>
         </header>
 
@@ -245,9 +239,6 @@ function OptieTwee() {
           <span className="flex gap-3">
             <Link to="/" className="underline underline-offset-4 hover:text-primary">
               Optie 1
-            </Link>
-            <Link to="/optie-3" className="underline underline-offset-4 hover:text-primary">
-              Optie 3
             </Link>
           </span>
         </footer>
