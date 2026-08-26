@@ -14,6 +14,7 @@ import {
   ArrowRight,
   Check,
   Sparkles,
+  CalendarDays,
   RotateCcw,
 } from "lucide-react";
 import { AuroraField } from "@/components/AuroraField";
