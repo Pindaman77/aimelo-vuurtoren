@@ -117,13 +117,13 @@ function Index() {
       <motion.div
         aria-hidden
         className="pointer-events-none absolute -left-32 top-1/4 h-[26rem] w-[26rem] rounded-full bg-primary/12 blur-3xl"
-        animate={reduce ? undefined : { x: [0, 40, 0], y: [0, -30, 0], scale: [1, 1.12, 1] }}
+        animate={reduce ? {} : { x: [0, 40, 0], y: [0, -30, 0], scale: [1, 1.12, 1] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         aria-hidden
         className="pointer-events-none absolute -right-24 bottom-0 h-[22rem] w-[22rem] rounded-full bg-accent/12 blur-3xl"
-        animate={reduce ? undefined : { x: [0, -50, 0], y: [0, 24, 0], scale: [1.1, 1, 1.1] }}
+        animate={reduce ? {} : { x: [0, -50, 0], y: [0, 24, 0], scale: [1.1, 1, 1.1] }}
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
 
@@ -155,7 +155,7 @@ function Index() {
             </span>
             <motion.span
               className="rounded-full border border-primary/40 px-2.5 py-1 font-medium text-primary"
-              animate={reduce ? undefined : { opacity: [1, 0.55, 1] }}
+              animate={reduce ? {} : { opacity: [1, 0.55, 1] }}
               transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
             >
               Gratis
@@ -173,7 +173,7 @@ function Index() {
             >
               <motion.span
                 className="h-1.5 w-1.5 rounded-full bg-primary"
-                animate={reduce ? undefined : { scale: [1, 1.9, 1], opacity: [1, 0.4, 1] }}
+                animate={reduce ? {} : { scale: [1, 1.9, 1], opacity: [1, 0.4, 1] }}
                 transition={{ duration: 1.8, repeat: Infinity }}
               />
               AI-community voor Almelo, Wierden, Borne, Rijssen &amp; Hengelo
