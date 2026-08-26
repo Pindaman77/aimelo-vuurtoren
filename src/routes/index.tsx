@@ -166,20 +166,16 @@ function Index() {
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
             <motion.div
-              className="hidden items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 backdrop-blur sm:flex"
-              animate={reduce ? {} : { boxShadow: ["0 0 0 0 oklch(0.87 0.2 124 / 0)", "0 0 0 8px oklch(0.87 0.2 124 / 0.12)", "0 0 0 0 oklch(0.87 0.2 124 / 0)"] }}
+              className="hidden items-center gap-2.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 backdrop-blur sm:flex"
+              animate={reduce ? {} : { boxShadow: ["0 0 0 0 oklch(0.87 0.2 124 / 0)", "0 0 0 10px oklch(0.87 0.2 124 / 0.14)", "0 0 0 0 oklch(0.87 0.2 124 / 0)"] }}
               transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
             >
-              <motion.span
-                className="h-2 w-2 rounded-full bg-primary"
-                animate={reduce ? {} : { scale: [1, 1.4, 1], opacity: [1, 0.7, 1] }}
-                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-              />
+              <CalendarDays className="h-4 w-4 text-primary" strokeWidth={2} />
               <div className="flex flex-col leading-none">
-                <span className="font-display text-[11px] font-bold uppercase tracking-wide text-primary">
+                <span className="font-display text-xs font-bold uppercase tracking-wide text-primary">
                   De Woensdag
                 </span>
-                <span className="text-[10px] font-medium text-foreground/80">
+                <span className="text-[11px] font-medium text-foreground/80">
                   18:00–20:00 · Almelo
                 </span>
               </div>
