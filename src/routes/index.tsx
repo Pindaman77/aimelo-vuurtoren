@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useRef, useState } from "react";
 import {
   AnimatePresence,
@@ -363,9 +363,9 @@ function Index() {
 
         <footer className="flex items-center justify-between border-t border-border pt-3 text-[11px] text-muted-foreground">
           <span>AiMELO · woensdag 18:00–20:00 · Almelo</span>
-          <span className="hidden sm:inline">
-            Voor ZZP'ers, freelancers en nieuwsgierige professionals
-          </span>
+          <Link to="/optie-2" className="underline underline-offset-4 hover:text-primary">
+            Bekijk optie 2
+          </Link>
         </footer>
       </div>
     </main>

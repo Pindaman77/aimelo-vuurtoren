@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as Optie2RouteImport } from './routes/optie-2'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Optie2Route = Optie2RouteImport.update({
+  id: '/optie-2',
+  path: '/optie-2',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/optie-2': typeof Optie2Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/optie-2': typeof Optie2Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/optie-2': typeof Optie2Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/optie-2'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/optie-2'
+  id: '__root__' | '/' | '/optie-2'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  Optie2Route: typeof Optie2Route
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/optie-2': {
+      id: '/optie-2'
+      path: '/optie-2'
+      fullPath: '/optie-2'
+      preLoaderRoute: typeof Optie2RouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  Optie2Route: Optie2Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
