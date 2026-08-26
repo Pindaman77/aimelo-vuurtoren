@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Optie 3 van de AiMELO-landingspagina: bepaal je AI-niveau van digibeet tot AI-kenner in drie vragen, met geanimeerd canvas-auroraveld en parallax.",
+          "Bepaal je AI-niveau van digibeet tot AI-kenner in drie vragen, met geanimeerd canvas-auroraveld en parallax.",
       },
       { property: "og:title", content: "AiMELO — Digibeet of AI-kenner?" },
       {
@@ -321,7 +321,7 @@ function Index() {
             Voor ZZP'ers, freelancers en nieuwsgierige professionals
           </span>
           <span className="flex gap-3">
-            <Link to="/" className="underline underline-offset-4 hover:text-primary">
+            <Link to="/optie-3" className="underline underline-offset-4 hover:text-primary">
               Optie 3
             </Link>
             <Link

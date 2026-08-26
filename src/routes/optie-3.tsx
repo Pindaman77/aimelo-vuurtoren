@@ -134,7 +134,7 @@ function Optie3() {
               to="/"
               className="rounded-full border border-border bg-secondary/60 px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary"
             >
-              Optie 1
+              Hoofdversie
             </Link>
           </div>
         </header>
@@ -301,7 +301,7 @@ function Optie3() {
               Optie 2
             </Link>
             <Link to="/" className="underline underline-offset-4 hover:text-primary">
-              Optie 1
+              Hoofdversie
             </Link>
           </span>
         </footer>
