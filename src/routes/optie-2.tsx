@@ -121,6 +121,12 @@ function OptieTwee() {
             >
               Optie 1
             </Link>
+            <Link
+              to="/optie-3"
+              className="rounded-full border border-border bg-secondary/60 px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              Optie 3
+            </Link>
           </div>
         </header>
 
@@ -236,9 +242,14 @@ function OptieTwee() {
 
         <footer className="flex items-center justify-between border-t border-border pt-3 text-[11px] text-muted-foreground">
           <span>AiMELO · woensdag 18:00–20:00 · Almelo</span>
-          <Link to="/" className="underline underline-offset-4 hover:text-primary">
-            Vergelijk met optie 1
-          </Link>
+          <span className="flex gap-3">
+            <Link to="/" className="underline underline-offset-4 hover:text-primary">
+              Optie 1
+            </Link>
+            <Link to="/optie-3" className="underline underline-offset-4 hover:text-primary">
+              Optie 3
+            </Link>
+          </span>
         </footer>
       </div>
     </main>
