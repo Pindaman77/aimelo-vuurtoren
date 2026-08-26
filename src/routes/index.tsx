@@ -130,6 +130,12 @@ function Index() {
             >
               Optie 2
             </Link>
+            <Link
+              to="/optie-3"
+              className="rounded-full border border-border bg-secondary/60 px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              Optie 3
+            </Link>
           </div>
         </header>
 
