@@ -14,7 +14,6 @@ import {
   ArrowRight,
   Check,
   Sparkles,
-  MapPin,
   CalendarDays,
   RotateCcw,
 } from "lucide-react";
@@ -165,15 +164,25 @@ function Index() {
               Ai<span className="text-primary">MELO</span>
             </span>
           </div>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground sm:gap-5">
-            <span className="hidden items-center gap-1.5 sm:flex">
-              <CalendarDays className="h-3.5 w-3.5" /> Elke woensdag · 18:00–20:00
-            </span>
-            <span className="hidden items-center gap-1.5 sm:flex">
-              <MapPin className="h-3.5 w-3.5" /> Almelo &amp; omgeving
-            </span>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <motion.div
+              className="hidden items-center gap-2.5 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 backdrop-blur sm:flex"
+              animate={reduce ? {} : { boxShadow: ["0 0 0 0 oklch(0.87 0.2 124 / 0)", "0 0 0 10px oklch(0.87 0.2 124 / 0.14)", "0 0 0 0 oklch(0.87 0.2 124 / 0)"] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <CalendarDays className="h-4 w-4 text-primary" strokeWidth={2} />
+              <div className="flex flex-col leading-none">
+                <span className="font-display text-xs font-bold uppercase tracking-wide text-primary">
+                  De Woensdag
+                </span>
+                <span className="text-[11px] font-medium text-foreground/80">
+                  18:00–20:00 · Almelo
+                </span>
+              </div>
+            </motion.div>
+
             <motion.span
-              className="rounded-full border border-primary/40 px-2.5 py-1 font-medium text-primary"
+              className="rounded-full border border-primary/40 px-2.5 py-1 text-xs font-medium text-primary"
               animate={reduce ? {} : { opacity: [1, 0.55, 1] }}
               transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -364,12 +373,15 @@ function Index() {
           </Layer>
         </div>
 
-        <footer className="flex items-center justify-between border-t border-border pt-3 text-[11px] text-muted-foreground">
-          <span>AiMELO · woensdag 18:00–20:00 · Almelo</span>
-          <span className="hidden sm:inline">
+        <footer className="flex items-center justify-between border-t border-border pt-3 text-[11px]">
+          <span className="flex items-center gap-2">
+            <span className="font-display font-bold text-primary">De Woensdag</span>
+            <span className="text-muted-foreground">18:00–20:00 · Almelo</span>
+          </span>
+          <span className="hidden text-muted-foreground sm:inline">
             Voor ZZP'ers, freelancers en nieuwsgierige professionals
           </span>
-          <span className="flex gap-3">
+          <span className="flex gap-3 text-muted-foreground">
             <Link to="/optie-3" className="underline underline-offset-4 hover:text-primary">
               Optie 3
             </Link>
