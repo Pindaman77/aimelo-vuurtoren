@@ -83,7 +83,7 @@ function Index() {
     )}`;
   }, [naam, step]);
 
-  const current = STEPS[step];
+  const current = STEPS[step] ?? STEPS[0]!;
   const progress = done ? 100 : (step / (STEPS.length + 1)) * 100;
 
   function pick(value: string) {
