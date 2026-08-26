@@ -210,7 +210,7 @@ function Index() {
                 />
                 AI-community voor Almelo, Wierden, Borne, Rijssen &amp; Hengelo
               </motion.p>
-              <h1 className="font-display text-4xl font-bold leading-[0.95] sm:text-5xl lg:text-6xl">
+              <h1 className="text-aura font-display text-4xl font-bold leading-[0.95] sm:text-5xl lg:text-6xl">
                 {["Digibeet", "of AI-kenner?"].map((line, i) => (
                   <motion.span
                     key={line}
