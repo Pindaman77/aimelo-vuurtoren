@@ -106,36 +106,11 @@ function levelFor(score: number) {
 }
 
 function TiltCard({ children }: { children: React.ReactNode }) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const mx = useMotionValue(0);
-  const my = useMotionValue(0);
-  const rx = useSpring(useTransform(my, [-0.5, 0.5], [7, -7]), {
-    stiffness: 140,
-    damping: 18,
-  });
-  const ry = useSpring(useTransform(mx, [-0.5, 0.5], [-9, 9]), {
-    stiffness: 140,
-    damping: 18,
-  });
-
   return (
-    <motion.div
-      ref={ref}
-      onPointerMove={(e) => {
-        const r = ref.current?.getBoundingClientRect();
-        if (!r) return;
-        mx.set((e.clientX - r.left) / r.width - 0.5);
-        my.set((e.clientY - r.top) / r.height - 0.5);
-      }}
-      onPointerLeave={() => {
-        mx.set(0);
-        my.set(0);
-      }}
-      style={{ rotateX: rx, rotateY: ry, transformPerspective: 1000 }}
-      className="glass-card relative flex min-h-0 flex-col rounded-3xl p-5 sm:p-7"
-    >
-      {children}
-    </motion.div>
+    <div className="glass-card relative flex min-h-0 flex-col rounded-3xl p-5 shadow-[0_24px_80px_-24px] shadow-primary/15 sm:p-7">
+      <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/8 via-transparent to-accent/8" />
+      <div className="relative flex min-h-0 flex-col">{children}</div>
+    </div>
   );
 }
 
