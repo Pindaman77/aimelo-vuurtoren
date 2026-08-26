@@ -165,15 +165,29 @@ function Index() {
               Ai<span className="text-primary">MELO</span>
             </span>
           </div>
-          <div className="flex items-center gap-2 text-xs text-muted-foreground sm:gap-5">
-            <span className="hidden items-center gap-1.5 sm:flex">
-              <CalendarDays className="h-3.5 w-3.5" /> Elke woensdag · 18:00–20:00
-            </span>
-            <span className="hidden items-center gap-1.5 sm:flex">
-              <MapPin className="h-3.5 w-3.5" /> Almelo &amp; omgeving
-            </span>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <motion.div
+              className="hidden items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 backdrop-blur sm:flex"
+              animate={reduce ? {} : { boxShadow: ["0 0 0 0 oklch(0.87 0.2 124 / 0)", "0 0 0 8px oklch(0.87 0.2 124 / 0.12)", "0 0 0 0 oklch(0.87 0.2 124 / 0)"] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <motion.span
+                className="h-2 w-2 rounded-full bg-primary"
+                animate={reduce ? {} : { scale: [1, 1.4, 1], opacity: [1, 0.7, 1] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <div className="flex flex-col leading-none">
+                <span className="font-display text-[11px] font-bold uppercase tracking-wide text-primary">
+                  De Woensdag
+                </span>
+                <span className="text-[10px] font-medium text-foreground/80">
+                  18:00–20:00 · Almelo
+                </span>
+              </div>
+            </motion.div>
+
             <motion.span
-              className="rounded-full border border-primary/40 px-2.5 py-1 font-medium text-primary"
+              className="rounded-full border border-primary/40 px-2.5 py-1 text-xs font-medium text-primary"
               animate={reduce ? {} : { opacity: [1, 0.55, 1] }}
               transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
             >
