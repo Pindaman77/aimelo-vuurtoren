@@ -216,3 +216,20 @@
   background-size: 200% auto;
   animation: shimmer-slide 4.5s linear infinite;
 }
+
+@keyframes text-aura-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px oklch(0.87 0.2 124 / 0.35))
+      drop-shadow(0 0 34px oklch(0.87 0.2 124 / 0.18));
+  }
+  50% {
+    filter: drop-shadow(0 0 18px oklch(0.87 0.2 124 / 0.6))
+      drop-shadow(0 0 52px oklch(0.75 0.16 62 / 0.28));
+  }
+}
+@utility text-aura {
+  animation: text-aura-pulse 4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .text-aura { animation: none; }
+}
