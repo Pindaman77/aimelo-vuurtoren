@@ -167,11 +167,11 @@ function Index() {
               Ai<span className="text-primary">MELO</span>
             </span>
           </div>
-          <div className="hidden items-center gap-5 text-xs text-muted-foreground sm:flex">
-            <span className="flex items-center gap-1.5">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
+            <span className="hidden items-center gap-1.5 sm:inline-flex">
               <CalendarDays className="h-3.5 w-3.5" /> Elke woensdag · 18:00–20:00
             </span>
-            <span className="flex items-center gap-1.5">
+            <span className="hidden items-center gap-1.5 md:inline-flex">
               <MapPin className="h-3.5 w-3.5" /> Almelo &amp; omgeving
             </span>
             <motion.span
@@ -181,6 +181,12 @@ function Index() {
             >
               Gratis
             </motion.span>
+            <Link
+              to="/optie-2"
+              className="rounded-full border border-border bg-secondary/60 px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              Optie 2
+            </Link>
           </div>
         </motion.header>
 

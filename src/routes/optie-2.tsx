@@ -108,15 +108,18 @@ function OptieTwee() {
               Optie 2
             </span>
           </span>
-          <div className="hidden items-center gap-4 sm:flex">
-            <span className="flex items-center gap-1.5">
+          <div className="flex items-center gap-3">
+            <span className="hidden items-center gap-1.5 text-xs text-muted-foreground sm:inline-flex">
               <CalendarDays className="h-3.5 w-3.5" /> Woensdag 18:00–20:00
             </span>
-            <span className="flex items-center gap-1.5">
+            <span className="hidden items-center gap-1.5 text-xs text-muted-foreground md:inline-flex">
               <MapPin className="h-3.5 w-3.5" /> Almelo
             </span>
-            <Link to="/" className="underline underline-offset-4 hover:text-primary">
-              Bekijk optie 1
+            <Link
+              to="/"
+              className="rounded-full border border-border bg-secondary/60 px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              Optie 1
             </Link>
           </div>
         </header>
