@@ -130,6 +130,12 @@ function Index() {
             >
               Optie 2
             </Link>
+            <Link
+              to="/optie-3"
+              className="rounded-full border border-border bg-secondary/60 px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              Optie 3
+            </Link>
           </div>
         </header>
 
@@ -290,9 +296,14 @@ function Index() {
           <span className="hidden sm:inline">
             Voor ZZP'ers, freelancers en nieuwsgierige professionals
           </span>
-          <Link to="/optie-2" className="underline underline-offset-4 hover:text-primary">
-            Optie 2
-          </Link>
+          <span className="flex gap-3">
+            <Link to="/optie-2" className="underline underline-offset-4 hover:text-primary">
+              Optie 2
+            </Link>
+            <Link to="/optie-3" className="underline underline-offset-4 hover:text-primary">
+              Optie 3
+            </Link>
+          </span>
         </footer>
       </div>
     </main>

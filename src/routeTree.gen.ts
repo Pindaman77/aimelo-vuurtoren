@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as Optie2RouteImport } from './routes/optie-2'
+import { Route as Optie3RouteImport } from './routes/optie-3'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const Optie2Route = Optie2RouteImport.update({
   path: '/optie-2',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Optie3Route = Optie3RouteImport.update({
+  id: '/optie-3',
+  path: '/optie-3',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/optie-2': typeof Optie2Route
+  '/optie-3': typeof Optie3Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/optie-2': typeof Optie2Route
+  '/optie-3': typeof Optie3Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/optie-2': typeof Optie2Route
+  '/optie-3': typeof Optie3Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/optie-2'
+  fullPaths: '/' | '/optie-2' | '/optie-3'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/optie-2'
-  id: '__root__' | '/' | '/optie-2'
+  to: '/' | '/optie-2' | '/optie-3'
+  id: '__root__' | '/' | '/optie-2' | '/optie-3'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   Optie2Route: typeof Optie2Route
+  Optie3Route: typeof Optie3Route
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Optie2RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/optie-3': {
+      id: '/optie-3'
+      path: '/optie-3'
+      fullPath: '/optie-3'
+      preLoaderRoute: typeof Optie3RouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   Optie2Route: Optie2Route,
+  Optie3Route: Optie3Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
