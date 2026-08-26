@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Soft animated aurora: large blurred gradient blobs drifting slowly,
- * with a very subtle pull toward the pointer. Decorative, token-colored.
+ * Canvas particle/constellation field (live production version).
  */
 export function AuroraField() {
   const ref = useRef<HTMLCanvasElement | null>(null);
@@ -17,11 +16,20 @@ export function AuroraField() {
     let raf = 0;
     let w = 0;
     let h = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const styles = getComputedStyle(document.documentElement);
     const lime = styles.getPropertyValue("--lime").trim() || "oklch(0.87 0.2 124)";
     const ember = styles.getPropertyValue("--ember").trim() || "oklch(0.75 0.16 62)";
+
+    let dots: {
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      r: number;
+      c: string;
+    }[] = [];
 
     const resize = () => {
       w = canvas.clientWidth;
@@ -29,52 +37,65 @@ export function AuroraField() {
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.round(Math.min(90, (w * h) / 16000));
+      dots = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        r: Math.random() * 1.6 + 0.6,
+        c: Math.random() > 0.78 ? ember : lime,
+      }));
     };
 
-    // Slow, large blobs. Each orbits its anchor point very gently.
-    const blobs = [
-      { color: lime, alpha: 0.16, r: 0.42, ax: 0.22, ay: 0.28, sp: 0.00012, ph: 0, orb: 0.08 },
-      { color: ember, alpha: 0.12, r: 0.38, ax: 0.78, ay: 0.7, sp: 0.00009, ph: 2.1, orb: 0.1 },
-      { color: lime, alpha: 0.1, r: 0.5, ax: 0.6, ay: 0.15, sp: 0.00007, ph: 4.2, orb: 0.06 },
-      { color: ember, alpha: 0.09, r: 0.34, ax: 0.15, ay: 0.85, sp: 0.00011, ph: 1.3, orb: 0.09 },
-    ];
-
-    // Pointer target with heavy easing — barely noticeable, no jitter.
-    const target = { x: 0.5, y: 0.5 };
-    const cur = { x: 0.5, y: 0.5 };
+    const pointer = { x: -9999, y: -9999 };
     const onMove = (e: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
-      target.x = (e.clientX - rect.left) / Math.max(rect.width, 1);
-      target.y = (e.clientY - rect.top) / Math.max(rect.height, 1);
+      pointer.x = e.clientX - rect.left;
+      pointer.y = e.clientY - rect.top;
     };
 
-    const draw = (t: number) => {
-      cur.x += (target.x - cur.x) * 0.015;
-      cur.y += (target.y - cur.y) * 0.015;
-
+    const draw = () => {
       ctx.clearRect(0, 0, w, h);
-      ctx.globalCompositeOperation = "lighter";
-      const base = Math.max(w, h);
-
-      for (const b of blobs) {
-        const ox = Math.cos(t * b.sp + b.ph) * b.orb;
-        const oy = Math.sin(t * b.sp * 1.3 + b.ph) * b.orb;
-        // Tiny pointer drift (max ~4% of screen)
-        const px = b.ax + ox + (cur.x - 0.5) * 0.04;
-        const py = b.ay + oy + (cur.y - 0.5) * 0.04;
-        const radius = b.r * base;
-        const g = ctx.createRadialGradient(px * w, py * h, 0, px * w, py * h, radius);
-        g.addColorStop(0, b.color);
-        g.addColorStop(1, "transparent");
-        ctx.globalAlpha = b.alpha;
-        ctx.fillStyle = g;
+      for (const d of dots) {
+        d.x += d.vx;
+        d.y += d.vy;
+        if (d.x < 0 || d.x > w) d.vx *= -1;
+        if (d.y < 0 || d.y > h) d.vy *= -1;
+        const dx = d.x - pointer.x;
+        const dy = d.y - pointer.y;
+        const dist = dx * dx + dy * dy;
+        if (dist < 18000) {
+          const push = (1 - dist / 18000) * 0.6;
+          d.x += (dx / (Math.sqrt(dist) || 1)) * push;
+          d.y += (dy / (Math.sqrt(dist) || 1)) * push;
+        }
         ctx.beginPath();
-        ctx.arc(px * w, py * h, radius, 0, Math.PI * 2);
+        ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = d.c;
+        ctx.globalAlpha = 0.55;
         ctx.fill();
       }
-
       ctx.globalAlpha = 1;
-      ctx.globalCompositeOperation = "source-over";
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const a = dots[i]!;
+          const b = dots[j]!;
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = dx * dx + dy * dy;
+          if (dist < 13000) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = a.c;
+            ctx.globalAlpha = (1 - dist / 13000) * 0.16;
+            ctx.lineWidth = 0.7;
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.globalAlpha = 1;
       raf = requestAnimationFrame(draw);
     };
 
@@ -83,7 +104,7 @@ export function AuroraField() {
     window.addEventListener("pointermove", onMove);
 
     if (reduce) {
-      draw(0);
+      draw();
       cancelAnimationFrame(raf);
     } else {
       raf = requestAnimationFrame(draw);
@@ -100,7 +121,7 @@ export function AuroraField() {
     <canvas
       ref={ref}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 h-full w-full blur-2xl"
+      className="pointer-events-none absolute inset-0 h-full w-full opacity-70"
     />
   );
 }
