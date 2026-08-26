@@ -378,12 +378,15 @@ function Index() {
           </Layer>
         </div>
 
-        <footer className="flex items-center justify-between border-t border-border pt-3 text-[11px] text-muted-foreground">
-          <span>AiMELO · woensdag 18:00–20:00 · Almelo</span>
-          <span className="hidden sm:inline">
+        <footer className="flex items-center justify-between border-t border-border pt-3 text-[11px]">
+          <span className="flex items-center gap-2">
+            <span className="font-display font-bold text-primary">De Woensdag</span>
+            <span className="text-muted-foreground">18:00–20:00 · Almelo</span>
+          </span>
+          <span className="hidden text-muted-foreground sm:inline">
             Voor ZZP'ers, freelancers en nieuwsgierige professionals
           </span>
-          <span className="flex gap-3">
+          <span className="flex gap-3 text-muted-foreground">
             <Link to="/optie-3" className="underline underline-offset-4 hover:text-primary">
               Optie 3
             </Link>
