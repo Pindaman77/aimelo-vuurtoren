@@ -343,7 +343,16 @@ function Index() {
                     transition={{ duration: 0.45, ease: EASE }}
                     className="relative"
                   >
-                    <Confetti />
+                    <Fireworks />
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2, duration: 0.5, ease: EASE }}
+                      className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-sm font-semibold text-primary"
+                    >
+                      <Sparkles className="h-4 w-4" />
+                      Gefeliciteerd — je mag meedoen!
+                    </motion.div>
                     <p className="text-xs font-semibold uppercase tracking-widest text-primary">
                       Jouw AI-niveau
                     </p>
