@@ -274,7 +274,7 @@ function Optie3() {
                 </div>
                 <div className="mt-5 flex flex-wrap gap-2">
                   <a
-                    href="https://wa.me/?text=Ik%20kom%20woensdag%20naar%20AiMELO%20in%20Almelo!"
+                    href="https://aimelo.nl/aanmelden/2/"
                     className="flex-1 rounded-xl bg-primary px-4 py-3 text-center font-display text-sm font-bold text-primary-foreground"
                   >
                     Zet me op de herinnerlijst

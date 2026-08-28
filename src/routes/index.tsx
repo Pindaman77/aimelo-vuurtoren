@@ -353,7 +353,7 @@ function Index() {
                     <LevelMeter value={score} />
                     <p className="mt-4 text-sm text-muted-foreground">{level.line}</p>
                     <motion.a
-                      href="https://wa.me/?text=Ik%20kom%20woensdag%20naar%20AiMELO%20in%20Almelo!"
+                      href="https://aimelo.nl/aanmelden/2/"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className="animate-pulse-ring mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3.5 font-display text-sm font-bold text-primary-foreground"
