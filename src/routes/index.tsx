@@ -343,7 +343,16 @@ function Index() {
                     transition={{ duration: 0.45, ease: EASE }}
                     className="relative"
                   >
-                    <Confetti />
+                    <Fireworks />
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2, duration: 0.5, ease: EASE }}
+                      className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-sm font-semibold text-primary"
+                    >
+                      <Sparkles className="h-4 w-4" />
+                      Gefeliciteerd — je mag meedoen!
+                    </motion.div>
                     <p className="text-xs font-semibold uppercase tracking-widest text-primary">
                       Jouw AI-niveau
                     </p>
@@ -501,31 +510,60 @@ function TiltCard({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Confetti() {
+function Fireworks() {
   const reduce = useReducedMotion();
-  const bits = useMemo(
-    () =>
-      Array.from({ length: 22 }, (_, i) => ({
+  const bursts = useMemo(() => {
+    const colors = ["bg-primary", "bg-accent", "bg-primary/80", "bg-accent/80"];
+    return Array.from({ length: 5 }, (_, i) => {
+      const angleBase = Math.random() * Math.PI * 2;
+      const originX = (Math.random() - 0.5) * 260;
+      const originY = -(Math.random() * 120 + 40);
+      return {
         id: i,
-        x: (Math.random() - 0.5) * 320,
-        y: -(Math.random() * 200 + 60),
-        r: Math.random() * 360,
-        d: Math.random() * 0.3,
-        c: i % 3 === 0 ? "bg-accent" : "bg-primary",
-      })),
-    [],
-  );
+        delay: i * 0.18,
+        originX,
+        originY,
+        particles: Array.from({ length: 18 }, (_, j) => {
+          const angle = angleBase + (j / 18) * Math.PI * 2 + (Math.random() - 0.5) * 0.4;
+          const speed = Math.random() * 90 + 60;
+          return {
+            id: `${i}-${j}`,
+            x: Math.cos(angle) * speed,
+            y: Math.sin(angle) * speed + 30,
+            color: colors[j % colors.length]!,
+            size: Math.random() * 3 + 2,
+          };
+        }),
+      };
+    });
+  }, []);
+
   if (reduce) return null;
+
   return (
     <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-0">
-      {bits.map((b) => (
-        <motion.span
-          key={b.id}
-          className={`absolute left-1/2 top-0 h-1.5 w-1.5 rounded-[2px] ${b.c}`}
-          initial={{ opacity: 1, x: 0, y: 0, rotate: 0 }}
-          animate={{ opacity: 0, x: b.x, y: b.y, rotate: b.r }}
-          transition={{ duration: 1.4, delay: b.d, ease: "easeOut" }}
-        />
+      {bursts.map((burst) => (
+        <div key={burst.id} className="absolute left-1/2 top-0">
+          {burst.particles.map((p) => (
+            <motion.span
+              key={p.id}
+              className={`absolute rounded-full ${p.color}`}
+              style={{ width: p.size, height: p.size }}
+              initial={{ opacity: 1, x: burst.originX, y: burst.originY, scale: 1 }}
+              animate={{
+                opacity: [1, 1, 0],
+                x: burst.originX + p.x,
+                y: burst.originY + p.y,
+                scale: [1, 0.6, 0.2],
+              }}
+              transition={{
+                duration: 1.6,
+                delay: burst.delay,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+            />
+          ))}
+        </div>
       ))}
     </div>
   );
