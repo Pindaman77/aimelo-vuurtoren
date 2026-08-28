@@ -221,7 +221,7 @@ function OptieTwee() {
                     {RUNGS[rungIndex]!.line}
                   </p>
                   <motion.a
-                    href="https://wa.me/?text=Ik%20kom%20woensdag%20naar%20AiMELO%20in%20Almelo!"
+                    href="https://aimelo.nl/aanmelden/2/"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="mt-7 inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-4 font-display text-sm font-bold text-primary-foreground"
